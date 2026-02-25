@@ -23,6 +23,7 @@ class _NotificationPageState extends State<NotificationPage> {
       backgroundColor: kLightGreyColor,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
+        iconTheme: IconThemeData(color: kWhiteColor),
         elevation: 0,
         title: const Text(
           'All Notifications',

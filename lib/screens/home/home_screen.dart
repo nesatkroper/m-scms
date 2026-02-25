@@ -56,17 +56,17 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              icon: const Icon(Icons.refresh),
-              color: const Color.fromARGB(255, 75, 51, 212),
-              iconSize: 28,
-              onPressed: () {
-                Provider.of<AuthProvider>(context, listen: false).init();
-              },
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 8.0),
+          //   child: IconButton(
+          //     icon: const Icon(Icons.refresh),
+          //     color: const Color.fromARGB(255, 75, 51, 212),
+          //     iconSize: 28,
+          //     onPressed: () {
+          //       Provider.of<AuthProvider>(context, listen: false).init();
+          //     },
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
@@ -184,13 +184,13 @@ class _HomePageState extends State<HomePage> {
 
                 _buildCategoryCard(
                   icon: Icons.school,
-                  title: 'Boutique class',
+                  title: 'Class',
                   color: kBoutiqueColor,
                 ),
 
                 _buildCategoryCard(
                   icon: Icons.store,
-                  title: 'Bookstore',
+                  title: 'Book',
                   color: kBookstoreColor,
                 ),
               ],
