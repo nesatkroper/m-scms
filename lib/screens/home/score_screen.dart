@@ -19,9 +19,12 @@ class _ScorePageState extends State<ScorePage> {
     List<SubjectScore> dynamicScores = [];
     if (userData != null && userData['enrollments'] != null) {
       final List<dynamic> enrollmentList = userData['enrollments'];
-      dynamicScores = enrollmentList
-          .map((e) => SubjectScore.fromEnrollment(e as Map<String, dynamic>))
-          .toList();
+      dynamicScores =
+          enrollmentList
+              .map(
+                (e) => SubjectScore.fromEnrollment(e as Map<String, dynamic>),
+              )
+              .toList();
     }
 
     return Scaffold(
@@ -77,7 +80,7 @@ class _ScorePageState extends State<ScorePage> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [kPrimaryColor, Color(0xFF6A1B9A)],
+          colors: [kPrimaryColor, kPrimary400],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -121,7 +124,7 @@ class _ScorePageState extends State<ScorePage> {
 
   Widget _buildModernSubjectCard(SubjectScore score) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(24),
@@ -163,7 +166,7 @@ class _ScorePageState extends State<ScorePage> {
                       const SizedBox(height: 4),
                       Text(
                         "Academic Year 2025-2026",
-                        style: TextStyle(color: kGreyColor, fontSize: 12),
+                        style: TextStyle(color: kGreyColor, fontSize: 10),
                       ),
                     ],
                   ),
@@ -174,7 +177,7 @@ class _ScorePageState extends State<ScorePage> {
           ),
 
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 Row(
@@ -187,7 +190,7 @@ class _ScorePageState extends State<ScorePage> {
                         Colors.blue,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: _buildScoreTile(
                         "Listening",
@@ -198,7 +201,7 @@ class _ScorePageState extends State<ScorePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
@@ -209,7 +212,7 @@ class _ScorePageState extends State<ScorePage> {
                         Colors.teal,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: _buildScoreTile(
                         "Reading",
@@ -220,7 +223,7 @@ class _ScorePageState extends State<ScorePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
@@ -231,7 +234,7 @@ class _ScorePageState extends State<ScorePage> {
                         Colors.pink,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: _buildScoreTile(
                         "Midterm",
@@ -242,7 +245,7 @@ class _ScorePageState extends State<ScorePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
                 _buildScoreTile(
                   "Final Exam",
                   score.finalScore,
@@ -303,7 +306,7 @@ class _ScorePageState extends State<ScorePage> {
     bool isWide = false,
   }) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: kLightGreyColor.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(16),
@@ -318,7 +321,7 @@ class _ScorePageState extends State<ScorePage> {
             ),
             child: Icon(icon, size: 18, color: color),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -391,7 +394,7 @@ class _ScorePageState extends State<ScorePage> {
                 "AVERAGE TOTAL SCORE",
                 style: TextStyle(
                   color: Colors.white70,
-                  fontSize: 12,
+                  fontSize: 10,
                   letterSpacing: 1,
                 ),
               ),

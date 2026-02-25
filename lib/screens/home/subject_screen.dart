@@ -102,7 +102,7 @@ class SubjectPage extends StatelessWidget {
 
   Widget _buildSubjectCard(BuildContext context, dynamic subject) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 7),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(16),
