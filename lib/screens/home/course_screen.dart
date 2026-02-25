@@ -4,6 +4,7 @@ import 'package:m_scms/providers/auth_provider.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
@@ -208,6 +209,18 @@ class _CoursePageState extends State<CoursePage> {
                     Icons.room,
                     "Classroom",
                     course.classroom.roomNumber,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildRowInfo(
+                    Icons.event,
+                    "Start Date",
+                    DateFormat('dd MMM yyyy').format(course.startTime),
+                  ),
+                  const SizedBox(height: 8),
+                  _buildRowInfo(
+                    Icons.event_available,
+                    "End Date",
+                    DateFormat('dd MMM yyyy').format(course.endTime),
                   ),
                   const Divider(height: 24),
                   Row(

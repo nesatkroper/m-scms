@@ -4,6 +4,8 @@ import 'package:m_scms/screens/splash_screen.dart';
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
 
+// flutter build apk --split-per-abi
+
 void main() {
   runApp(
     ChangeNotifierProvider(

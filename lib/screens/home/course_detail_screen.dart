@@ -1,6 +1,7 @@
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/models/course.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CourseDetailPage extends StatelessWidget {
   final Course course;
@@ -73,12 +74,12 @@ class CourseDetailPage extends StatelessWidget {
                   _buildSectionCard("Schedule & Location", [
                     _buildInfoRow(
                       "Days",
-                      course.schedule,
+                      course.schedule.toUpperCase(),
                       Icons.calendar_month,
                     ),
                     _buildInfoRow(
                       "Time Slot",
-                      course.timeSlot,
+                      course.timeSlot.toUpperCase(),
                       Icons.access_time,
                     ),
                     _buildInfoRow(
@@ -91,7 +92,37 @@ class CourseDetailPage extends StatelessWidget {
                       "\$${course.fee} / ${course.paymentType}",
                       Icons.payments,
                     ),
+                    _buildInfoRow(
+                      "Credit Hours",
+                      "${course.subject.creditHours} Hours",
+                      Icons.timer,
+                    ),
+                    _buildInfoRow(
+                      "Start Date",
+                      DateFormat('dd MMM yyyy').format(course.startTime),
+                      Icons.event,
+                    ),
+                    _buildInfoRow(
+                      "End Date",
+                      DateFormat('dd MMM yyyy').format(course.endTime),
+                      Icons.event_available,
+                    ),
                   ]),
+                  if (course.subject.description.isNotEmpty) ...[
+                    const SizedBox(height: 16),
+                    _buildSectionCard("About Subject", [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          course.subject.description,
+                          style: const TextStyle(
+                            color: kGreyColor,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ],
                 ],
               ),
             ),
