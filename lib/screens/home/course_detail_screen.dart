@@ -14,7 +14,10 @@ class CourseDetailPage extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         iconTheme: IconThemeData(color: kWhiteColor),
         elevation: 0,
-        title: const Text("Course Details"),
+        title: const Text(
+          "Course Details",
+          style: TextStyle(color: kWhiteColor),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

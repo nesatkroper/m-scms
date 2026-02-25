@@ -134,7 +134,7 @@ class _CoursePageState extends State<CoursePage> {
 
   Widget _buildCourseCard(BuildContext context, Course course) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(16),
@@ -181,9 +181,9 @@ class _CoursePageState extends State<CoursePage> {
                 Text(
                   "\$${course.fee}",
                   style: TextStyle(
-                    color: kSecondaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 20,
                   ),
                 ),
               ],
@@ -214,7 +214,7 @@ class _CoursePageState extends State<CoursePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildTag(course.timeSlot.toUpperCase(), Colors.orange),
-                      _buildTag(course.schedule, Colors.blue),
+                      _buildTag(course.schedule.toUpperCase(), Colors.blue),
                       const Icon(
                         Icons.arrow_forward_ios,
                         size: 14,
@@ -256,7 +256,7 @@ class _CoursePageState extends State<CoursePage> {
 
   Widget _buildTag(String text, Color color) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),

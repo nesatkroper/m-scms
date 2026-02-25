@@ -37,25 +37,80 @@ class _LoginUserState extends State<LoginScreen> {
 
     if (mounted) {
       if (result) {
+        final userData = authProvider.userData;
+        final List<dynamic> roles = userData?['roles'] ?? [];
+
+        bool isStudent = roles.any((role) {
+          if (role is String) return role.toLowerCase() == 'student';
+          if (role is Map)
+            return role['name']?.toString().toLowerCase() == 'student';
+          return false;
+        });
+
+        if (!isStudent &&
+            userData?['enrollments'] != null &&
+            (userData?['enrollments'] as List).isNotEmpty) {
+          isStudent = true;
+        }
+
+        if (!isStudent) {
+          await authProvider.logout();
+          _showErrorDialog(
+            'Access Denied',
+            'This app is used for Students only',
+          );
+          return;
+        }
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MainNavigation()),
         );
       } else {
-        _showSnackBar(
-          'Login failed. Please check your credentials and try again.',
+        _showErrorDialog(
+          'Login Failed',
+          'Please check your credentials and try again.',
         );
       }
     }
   }
 
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 3),
-        backgroundColor: Colors.red,
-      ),
+  void _showErrorDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: Row(
+              children: [
+                const Icon(Icons.error_outline, color: Colors.red, size: 28),
+                const SizedBox(width: 10),
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            content: Text(
+              message,
+              style: const TextStyle(fontSize: 16, color: kDarkGreyColor),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  "OK",
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
     );
   }
 
@@ -96,7 +151,7 @@ class _LoginUserState extends State<LoginScreen> {
                 ),
                 validator: (v) => v!.isEmpty ? "Username is required" : null,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
               TextFormField(
                 controller: _passwordController,
                 obscureText: _isObscure,
@@ -112,7 +167,7 @@ class _LoginUserState extends State<LoginScreen> {
                 ),
                 validator: (v) => v!.isEmpty ? "Password is required" : null,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 height: 55,
