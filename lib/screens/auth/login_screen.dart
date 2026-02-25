@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 import '../main_navigation.dart';
 import 'package:m_scms/constants/constant.dart';
 
-class LoginUser extends StatefulWidget {
-  const LoginUser({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginUser> createState() => _LoginUserState();
+  State<LoginScreen> createState() => _LoginUserState();
 }
 
-class _LoginUserState extends State<LoginUser> {
+class _LoginUserState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -127,16 +127,19 @@ class _LoginUserState extends State<LoginUser> {
                       elevation: 5,
                       shadowColor: kGreyColor.withOpacity(0.4),
                     ),
-                    child: isLoadingFromProvider
-                        ? const CircularProgressIndicator(color: kPrimaryColor)
-                        : const Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                    child:
+                        isLoadingFromProvider
+                            ? const CircularProgressIndicator(
                               color: kPrimaryColor,
+                            )
+                            : const Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: kPrimaryColor,
+                              ),
                             ),
-                          ),
                   ),
                 ),
               ],
