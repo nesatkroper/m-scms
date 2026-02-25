@@ -4,6 +4,8 @@ import 'package:m_scms/services/auth_service.dart';
 import 'package:m_scms/services/subject_service.dart';
 import 'package:m_scms/models/subject.dart';
 import 'package:m_scms/models/course.dart';
+import 'package:m_scms/models/book.dart';
+import 'package:m_scms/services/book_service.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _isLoading = false;
@@ -21,9 +23,13 @@ class AuthProvider with ChangeNotifier {
   final AuthService _authService = AuthService();
   final SubjectService _subjectService = SubjectService();
   final CourseService _courseService = CourseService();
+  final BookService _bookService = BookService();
 
   List<Course> _allCourses = [];
   List<Course> get allCourses => _allCourses;
+
+  List<Book> _books = [];
+  List<Book> get books => _books;
 
   Future<void> fetchSchoolCourses() async {
     _isLoading = true;
@@ -32,6 +38,19 @@ class AuthProvider with ChangeNotifier {
       _allCourses = await _courseService.fetchAllCourses();
     } catch (e) {
       debugPrint("All Courses fetch error: $e");
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> fetchBooks() async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _books = await _bookService.fetchBooks();
+    } catch (e) {
+      debugPrint("Books fetch error: $e");
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -63,10 +82,11 @@ class AuthProvider with ChangeNotifier {
         if (_userData!.containsKey('enrollments') &&
             _userData!['enrollments'] != null) {
           final List<dynamic> enrollmentList = _userData!['enrollments'];
-          _myCourses = enrollmentList
-              .where((e) => e != null)
-              .map((e) => Course.fromJson(e))
-              .toList();
+          _myCourses =
+              enrollmentList
+                  .where((e) => e != null)
+                  .map((e) => Course.fromJson(e))
+                  .toList();
         } else {
           _myCourses = [];
         }

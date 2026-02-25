@@ -6,6 +6,7 @@ import 'package:m_scms/screens/home/subject_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:m_scms/constants/constant.dart';
 import 'package:provider/provider.dart';
+import 'package:m_scms/screens/home/book_screen.dart';
 import 'score_screen.dart';
 import 'package:m_scms/models/course.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
@@ -188,10 +189,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                _buildCategoryCard(
-                  icon: Icons.store,
-                  title: 'Book',
-                  color: Colors.amber,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const BookPage()),
+                    );
+                  },
+                  child: _buildCategoryCard(
+                    icon: Icons.store,
+                    title: 'Book',
+                    color: Colors.amber,
+                  ),
                 ),
               ],
             ),
