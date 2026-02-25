@@ -1,6 +1,6 @@
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
-import 'package:m_scms/screens/home/subject_detail_page.dart';
+import 'package:m_scms/screens/home/subject_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

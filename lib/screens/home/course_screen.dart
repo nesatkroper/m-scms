@@ -1,7 +1,7 @@
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/models/course.dart';
 import 'package:m_scms/providers/auth_provider.dart';
-import 'package:m_scms/screens/home/course_detail_page.dart';
+import 'package:m_scms/screens/home/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -55,34 +55,36 @@ class _CoursePageState extends State<CoursePage> {
             colors: [kPrimaryColor.withValues(alpha: 0.1), kLightGreyColor],
           ),
         ),
-        child: authProvider.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : RefreshIndicator(
-                onRefresh: () => authProvider.fetchSchoolCourses(),
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      _buildHeaderCard(courses.length),
-                      const SizedBox(height: 24),
+        child:
+            authProvider.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : RefreshIndicator(
+                  onRefresh: () => authProvider.fetchSchoolCourses(),
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        _buildHeaderCard(courses.length),
+                        const SizedBox(height: 24),
 
-                      courses.isEmpty
-                          ? const Center(
+                        courses.isEmpty
+                            ? const Center(
                               child: Text("No courses found in database"),
                             )
-                          : Column(
-                              children: courses
-                                  .map(
-                                    (course) =>
-                                        _buildCourseCard(context, course),
-                                  )
-                                  .toList(),
+                            : Column(
+                              children:
+                                  courses
+                                      .map(
+                                        (course) =>
+                                            _buildCourseCard(context, course),
+                                      )
+                                      .toList(),
                             ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
       ),
     );
   }
@@ -189,12 +191,13 @@ class _CoursePageState extends State<CoursePage> {
           ),
 
           InkWell(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CourseDetailPage(course: course),
-              ),
-            ),
+            onTap:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CourseDetailPage(course: course),
+                  ),
+                ),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(

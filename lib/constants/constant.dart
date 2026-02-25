@@ -37,3 +37,7 @@ const kFreeColor = Color(0xFF3B82F6);
 const kBookstoreColor = Color(0xFFEF4444);
 const kLiveColor = Color(0xFF7DD3FC);
 const kLeaderboardColor = Color(0xFF0284C7);
+
+class Constant {
+  static const url = "http://scms.local";
+}

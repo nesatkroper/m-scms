@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
-import 'package:m_scms/constants/app_url.dart';
+import 'package:m_scms/constants/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   static const String _tokenKey = 'auth_token';
 
-  static String get _baseApiUrl => Appurl.url;
+  static String get _baseApiUrl => Constant.url;
 
   Uri _buildUrl(String path) {
     return Uri.parse('$_baseApiUrl/api/v1/$path');

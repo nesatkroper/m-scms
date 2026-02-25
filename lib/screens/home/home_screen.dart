@@ -1,12 +1,12 @@
 import 'package:m_scms/providers/auth_provider.dart';
-import 'package:m_scms/screens/home/course_page.dart';
-import 'package:m_scms/screens/home/notification_page.dart';
-import 'package:m_scms/screens/home/request_review_page.dart';
-import 'package:m_scms/screens/home/subject_page.dart';
+import 'package:m_scms/screens/home/course_screen.dart';
+import 'package:m_scms/screens/home/notification_screen.dart';
+import 'package:m_scms/screens/home/request_review_screen.dart';
+import 'package:m_scms/screens/home/subject_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:m_scms/constants/constant.dart';
 import 'package:provider/provider.dart';
-import 'score_page.dart';
+import 'score_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:m_scms/constants/app_url.dart';
+import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/models/course.dart';
 import 'package:m_scms/services/auth_service.dart';
 
 class CourseService {
-  static String get _baseApiUrl => Appurl.url;
+  static String get _baseApiUrl => Constant.url;
   final AuthService _authService = AuthService();
 
   Future<List<Course>> fetchAllCourses() async {
@@ -25,9 +25,8 @@ class CourseService {
       if (response.statusCode == 200) {
         final dynamic decodedData = json.decode(response.body);
 
-        final List<dynamic> coursesJson = (decodedData is Map)
-            ? decodedData['courses']
-            : decodedData;
+        final List<dynamic> coursesJson =
+            (decodedData is Map) ? decodedData['courses'] : decodedData;
 
         return coursesJson
             .map((json) => Course.fromJson(json as Map<String, dynamic>))

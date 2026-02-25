@@ -1,14 +1,13 @@
 import 'package:m_scms/providers/auth_provider.dart';
 import 'package:m_scms/screens/auth/login_screen.dart';
-import 'package:m_scms/screens/home/about_page.dart';
-import 'package:m_scms/screens/home/enrollment_page.dart';
-import 'package:m_scms/screens/home/notification_page.dart';
-import 'package:m_scms/screens/home/password_page.dart';
-import 'package:m_scms/screens/home/score_page.dart';
+import 'package:m_scms/screens/home/about_screen.dart';
+import 'package:m_scms/screens/home/enrollment_screen.dart';
+import 'package:m_scms/screens/home/notification_screen.dart';
+import 'package:m_scms/screens/home/password_screen.dart';
+import 'package:m_scms/screens/home/score_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:m_scms/constants/constant.dart';
-import 'package:m_scms/constants/app_url.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -54,7 +53,10 @@ class ProfilePage extends StatelessWidget {
 
     final String fullAvatarUrl =
         avatarPath.isNotEmpty
-            ? "${Appurl.url}/$avatarPath".replaceFirst('127.0.0.1', '10.0.2.2')
+            ? "${Constant.url}/$avatarPath".replaceFirst(
+              '127.0.0.1',
+              '10.0.2.2',
+            )
             : '';
 
     return Scaffold(
