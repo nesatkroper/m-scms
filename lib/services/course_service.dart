@@ -26,7 +26,9 @@ class CourseService {
         final dynamic decodedData = json.decode(response.body);
 
         final List<dynamic> coursesJson =
-            (decodedData is Map) ? decodedData['courses'] : decodedData;
+            (decodedData is Map)
+                ? (decodedData['data'] ?? decodedData['courses'] ?? [])
+                : decodedData;
 
         return coursesJson
             .map((json) => Course.fromJson(json as Map<String, dynamic>))

@@ -23,23 +23,27 @@ class Subject {
 
   factory Subject.fromJson(Map<String, dynamic> json) {
     return Subject(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      code: json['code'] as String,
+      id: json['id'] is int ? json['id'] : 0,
+      name: json['name']?.toString() ?? 'Unknown',
+      code: json['code']?.toString() ?? '',
       departmentId:
           json['department_id'] is int
               ? json['department_id']
-              : int.tryParse(json['department_id'].toString()) ?? 0,
-      description: json['description'] as String,
+              : int.tryParse(json['department_id']?.toString() ?? '') ?? 0,
+      description: json['description']?.toString() ?? '',
       creditHours:
           json['credit_hours'] is int
               ? json['credit_hours']
-              : int.tryParse(json['credit_hours'].toString()) ?? 0,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
+              : int.tryParse(json['credit_hours']?.toString() ?? '') ?? 0,
+      createdAt:
+          DateTime.tryParse(json['created_at']?.toString() ?? '') ??
+          DateTime.now(),
+      updatedAt:
+          DateTime.tryParse(json['updated_at']?.toString() ?? '') ??
+          DateTime.now(),
       deletedAt:
-          (json['deleted_at'] != null && json['deleted_at'] is String)
-              ? DateTime.tryParse(json['deleted_at'] as String)
+          json['deleted_at'] != null
+              ? DateTime.tryParse(json['deleted_at'].toString())
               : null,
     );
   }

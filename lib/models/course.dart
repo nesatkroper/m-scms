@@ -26,39 +26,51 @@ class Course {
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
+    // Check if we are parsing from an Enrollment object which nests the course offering
+    final Map<String, dynamic> data =
+        json.containsKey('course_offering') && json['course_offering'] != null
+            ? json['course_offering']
+            : json;
+
     return Course(
-      id: json['id'] ?? 0,
-      timeSlot: json['time_slot'] ?? 'N/A',
-      schedule: json['schedule'] ?? 'N/A',
-      paymentType: json['payment_type'] ?? 'N/A',
-      fee: double.tryParse(json['fee'].toString()) ?? 0.0,
-      startTime: DateTime.parse(
-        json['start_time'] ?? DateTime.now().toIso8601String(),
-      ),
-      endTime: DateTime.parse(
-        json['end_time'] ?? DateTime.now().toIso8601String(),
-      ),
+      id: data['id'] ?? 0,
+      timeSlot: data['time_slot'] ?? 'N/A',
+      schedule: data['schedule'] ?? 'N/A',
+      paymentType: data['payment_type'] ?? 'N/A',
+      fee: double.tryParse(data['fee'].toString()) ?? 0.0,
+      // Use join_start and join_end for the actual dates
+      startTime:
+          DateTime.tryParse(data['join_start']?.toString() ?? '') ??
+          DateTime.tryParse(data['start_time']?.toString() ?? '') ??
+          DateTime.now(),
+      endTime:
+          DateTime.tryParse(data['join_end']?.toString() ?? '') ??
+          DateTime.tryParse(data['end_time']?.toString() ?? '') ??
+          DateTime.now(),
 
-      subject: json['subject'] != null
-          ? Subject.fromJson(json['subject'])
-          : Subject(
-              id: 0,
-              name: 'Unknown',
-              code: '',
-              departmentId: 0,
-              description: '',
-              creditHours: 0,
-              createdAt: DateTime.now(),
-              updatedAt: DateTime.now(),
-            ),
+      subject:
+          data['subject'] != null
+              ? Subject.fromJson(data['subject'])
+              : Subject(
+                id: 0,
+                name: 'Unknown',
+                code: '',
+                departmentId: 0,
+                description: '',
+                creditHours: 0,
+                createdAt: DateTime.now(),
+                updatedAt: DateTime.now(),
+              ),
 
-      teacher: json['teacher'] != null
-          ? Teacher.fromJson(json['teacher'])
-          : Teacher(id: 0, name: 'No Teacher', email: ''),
+      teacher:
+          data['teacher'] != null
+              ? Teacher.fromJson(data['teacher'])
+              : Teacher(id: 0, name: 'No Teacher', email: ''),
 
-      classroom: json['classroom'] != null
-          ? Classroom.fromJson(json['classroom'])
-          : Classroom(name: 'No Room', roomNumber: 'N/A'),
+      classroom:
+          data['classroom'] != null
+              ? Classroom.fromJson(data['classroom'])
+              : Classroom(name: 'No Room', roomNumber: 'N/A'),
     );
   }
 }
@@ -99,6 +111,9 @@ class Classroom {
   Classroom({required this.name, required this.roomNumber});
 
   factory Classroom.fromJson(Map<String, dynamic> json) {
-    return Classroom(name: json['name'], roomNumber: json['room_number']);
+    return Classroom(
+      name: json['name']?.toString() ?? 'No Room',
+      roomNumber: json['room_number']?.toString() ?? 'N/A',
+    );
   }
 }
