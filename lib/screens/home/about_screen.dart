@@ -220,7 +220,7 @@ class AboutAppPage extends StatelessWidget {
       ),
       _TeamMember(
         name: "Suon Phanun",
-        description: "LEAD DEVELOPER",
+        description: "DEVELOPER",
         role: "Full-stack Developer & Project Architect",
         image: "assets/nun.jpg",
         skills: ["Flutter", "Laravel", "REST API", "MySQL", "Git"],
@@ -266,12 +266,13 @@ class AboutAppPage extends StatelessWidget {
     ];
 
     return Column(
-      children: members.asMap().entries.map((entry) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: _buildMemberCard(entry.value, entry.key),
-        );
-      }).toList(),
+      children:
+          members.asMap().entries.map((entry) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: _buildMemberCard(entry.value, entry.key),
+            );
+          }).toList(),
     );
   }
 
@@ -414,35 +415,36 @@ class AboutAppPage extends StatelessWidget {
                   Wrap(
                     spacing: 6,
                     runSpacing: 6,
-                    children: member.skills.map((skill) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              member.color.withOpacity(0.1),
-                              member.color.withOpacity(0.05),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: member.color.withOpacity(0.2),
-                            width: 1,
-                          ),
-                        ),
-                        child: Text(
-                          skill,
-                          style: TextStyle(
-                            color: member.color,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      );
-                    }).toList(),
+                    children:
+                        member.skills.map((skill) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  member.color.withOpacity(0.1),
+                                  member.color.withOpacity(0.05),
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: member.color.withOpacity(0.2),
+                                width: 1,
+                              ),
+                            ),
+                            child: Text(
+                              skill,
+                              style: TextStyle(
+                                color: member.color,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          );
+                        }).toList(),
                   ),
                 ],
               ),
