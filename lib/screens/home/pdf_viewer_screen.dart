@@ -24,9 +24,21 @@ class PdfViewerScreen extends StatelessWidget {
       body: SfPdfViewer.network(
         book.url,
         onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {
+          debugPrint("PDF Load Failed: ${details.description}");
+          debugPrint("Target URL: ${book.url}");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Failed to load PDF: ${details.description}'),
+              duration: const Duration(seconds: 10),
+              content: Text(
+                'Failed to load PDF: ${details.description}\nURL: ${book.url}',
+              ),
+              action: SnackBarAction(
+                label: 'Retry',
+                onPressed: () {
+                  // Basic retry by pop and push
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
           );
         },

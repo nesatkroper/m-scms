@@ -8,7 +8,6 @@ import 'package:m_scms/constants/constant.dart';
 import 'package:provider/provider.dart';
 import 'package:m_scms/screens/home/book_screen.dart';
 import 'score_screen.dart';
-import 'package:m_scms/models/course.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
 
 class HomePage extends StatefulWidget {

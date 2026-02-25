@@ -1,3 +1,5 @@
+import 'package:m_scms/constants/constant.dart';
+
 class Book {
   final String name;
   final String filename;
@@ -18,11 +20,36 @@ class Book {
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
+    String sanitizeUrl(String? url) {
+      if (url == null || url.isEmpty) return '';
+
+      String processedUrl = url.trim();
+
+      // If the URL from backend uses a local domain, replace it with our Constant.url
+      // to ensure it works on emulators (10.0.2.2) or physical devices.
+      final baseUrl = Constant.url;
+      final localHosts = ['scms.local', 'localhost', '127.0.0.1'];
+      for (var host in localHosts) {
+        if (processedUrl.contains(host)) {
+          processedUrl = processedUrl.replaceAll(
+            RegExp('https?://$host'),
+            baseUrl,
+          );
+        }
+      }
+
+      try {
+        return Uri.encodeFull(processedUrl);
+      } catch (e) {
+        return processedUrl.replaceAll(' ', '%20');
+      }
+    }
+
     return Book(
       name: json['name'] ?? 'Unknown Book',
       filename: json['filename'] ?? '',
-      url: json['url'] ?? '',
-      thumbnail: json['thumbnail'],
+      url: sanitizeUrl(json['url']),
+      thumbnail: sanitizeUrl(json['thumbnail']),
       size: json['size'] ?? '0 MB',
       extension: json['extension'] ?? 'pdf',
       lastModified:

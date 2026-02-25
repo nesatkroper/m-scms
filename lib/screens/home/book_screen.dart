@@ -179,9 +179,11 @@ class _BookThumbnailState extends State<BookThumbnail> {
         return;
       }
 
-      // Download first 1MB of PDF to get the first page if possible,
-      // but for simplicity and reliability, we'll download enough or the whole file if small.
       final response = await http.get(Uri.parse(widget.book.url));
+
+      if (response.statusCode != 200) {
+        throw Exception('Server returned ${response.statusCode}');
+      }
       final pdfFile = File('${directory.path}/temp_$fileName.pdf');
       await pdfFile.writeAsBytes(response.bodyBytes);
 
