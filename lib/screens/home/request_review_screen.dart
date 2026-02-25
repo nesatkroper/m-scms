@@ -58,7 +58,6 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
               ),
               const SizedBox(height: 10),
 
-              // Dropdown to pick teacher from enrolled courses
               DropdownButtonFormField<int>(
                 decoration: InputDecoration(
                   filled: true,
@@ -75,7 +74,7 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
                       final course = emp['course_offering'];
                       return DropdownMenuItem<int>(
                         value:
-                            course['teacher_id'], // This is the ID used for user_id in API
+                            course['teacher_id'],
                         child: Text(
                           "${course['subject']['name']} (ID: ${course['teacher_id']})",
                         ),

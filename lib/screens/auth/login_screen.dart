@@ -76,74 +76,72 @@ class _LoginUserState extends State<LoginScreen> {
         systemOverlayStyle: SystemUiOverlayStyle.light,
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _buildLogoHeader(),
-                const SizedBox(height: 40),
-                TextFormField(
-                  controller: _usernameController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: _inputDecoration('Username (Email)').copyWith(
-                    prefixIcon: const Icon(
-                      Icons.account_circle,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildLogoHeader(),
+              const SizedBox(height: 40),
+              TextFormField(
+                controller: _usernameController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: _inputDecoration('Username (Email)').copyWith(
+                  prefixIcon: const Icon(
+                    Icons.account_circle,
+                    color: kGreyColor,
+                  ),
+                ),
+                validator: (v) => v!.isEmpty ? "Username is required" : null,
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _passwordController,
+                obscureText: _isObscure,
+                decoration: _inputDecoration('Password').copyWith(
+                  prefixIcon: const Icon(Icons.lock, color: kGreyColor),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isObscure ? Icons.visibility_off : Icons.visibility,
                       color: kGreyColor,
                     ),
+                    onPressed: () => setState(() => _isObscure = !_isObscure),
                   ),
-                  validator: (v) => v!.isEmpty ? "Username is required" : null,
                 ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: _isObscure,
-                  decoration: _inputDecoration('Password').copyWith(
-                    prefixIcon: const Icon(Icons.lock, color: kGreyColor),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _isObscure ? Icons.visibility_off : Icons.visibility,
-                        color: kGreyColor,
-                      ),
-                      onPressed: () => setState(() => _isObscure = !_isObscure),
+                validator: (v) => v!.isEmpty ? "Password is required" : null,
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: isLoadingFromProvider ? null : _attemptLogin,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
+                    elevation: 5,
+                    shadowColor: kGreyColor.withOpacity(0.4),
                   ),
-                  validator: (v) => v!.isEmpty ? "Password is required" : null,
-                ),
-                const SizedBox(height: 40),
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: ElevatedButton(
-                    onPressed: isLoadingFromProvider ? null : _attemptLogin,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      elevation: 5,
-                      shadowColor: kGreyColor.withOpacity(0.4),
-                    ),
-                    child:
-                        isLoadingFromProvider
-                            ? const CircularProgressIndicator(
+                  child:
+                      isLoadingFromProvider
+                          ? const CircularProgressIndicator(
+                            color: kPrimaryColor,
+                          )
+                          : const Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                               color: kPrimaryColor,
-                            )
-                            : const Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: kPrimaryColor,
-                              ),
                             ),
-                  ),
+                          ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

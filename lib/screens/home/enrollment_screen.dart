@@ -16,7 +16,6 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final userData = authProvider.userData;
 
-    // Use the same logic to grab enrollments from the provider
     List<dynamic> enrollments = [];
     if (userData != null && userData['enrollments'] != null) {
       enrollments = userData['enrollments'];
@@ -54,7 +53,6 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
               _buildHeaderCard(enrollments.length),
               const SizedBox(height: 24),
 
-              // Mapping your API data to the modern cards
               ...enrollments.map((e) => _buildModernEnrollmentCard(e)),
 
               const SizedBox(height: 30),
@@ -135,7 +133,6 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
       ),
       child: Column(
         children: [
-          // Card Header with Status Badge
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             decoration: BoxDecoration(
@@ -176,7 +173,6 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
             ),
           ),
 
-          // Detail Section
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

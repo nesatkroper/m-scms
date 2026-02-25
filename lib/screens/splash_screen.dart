@@ -12,9 +12,7 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
-    // Logic for Navigation
     if (!authProvider.isLoading) {
-      // Use Future.microtask to avoid "setState() or markNeedsBuild() called during build"
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -33,7 +31,6 @@ class Splash extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          // Using a subtle gradient makes it look more modern than a flat color
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -42,7 +39,6 @@ class Splash extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Center Logo and App Name
             Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -62,13 +58,13 @@ class Splash extends StatelessWidget {
                     ),
                     child: Image.asset(
                       ksplashlogoAssetsPath,
-                      height: 120, // Specific height for better control
+                      height: 120,
                       fit: BoxFit.contain,
                     ),
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    "WDUWLC", // Updated App Name
+                    "WDUWLC",
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
@@ -78,7 +74,6 @@ class Splash extends StatelessWidget {
                 ],
               ),
             ),
-            // Bottom Loading Indicator
             Positioned(
               bottom: 60,
               left: 0,

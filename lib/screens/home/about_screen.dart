@@ -37,7 +37,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ App Bar ═══════════════════
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: kPrimaryColor,
@@ -62,7 +61,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Project Header ═══════════════════
   Widget _buildProjectHeader() {
     return Container(
       width: double.infinity,
@@ -156,7 +154,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Description Card ═══════════════════
   Widget _buildDescriptionCard() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -211,7 +208,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Team Section ═══════════════════
   Widget _buildTeamSection() {
     final members = [
       _TeamMember(
@@ -279,7 +275,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Member Card ═══════════════════
   Widget _buildMemberCard(_TeamMember member, int index) {
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 300 + (index * 100)),
@@ -458,7 +453,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Section Title ═══════════════════
   Widget _buildSectionTitle(String title) {
     return Row(
       children: [
@@ -484,7 +478,6 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  // ═══════════════════ Footer ═══════════════════
   Widget _buildFooter() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -548,7 +541,6 @@ class AboutAppPage extends StatelessWidget {
   }
 }
 
-// ═══════════════════ Team Member Model ═══════════════════
 class _TeamMember {
   final String name;
   final String description;
