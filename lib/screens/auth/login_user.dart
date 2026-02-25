@@ -1,9 +1,9 @@
-import 'package:eduwlc/providers/auth_provider.dart';
+import 'package:m_scms/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../main_navigation.dart';
-import 'package:eduwlc/constants/constant.dart';
+import 'package:m_scms/constants/constant.dart';
 
 class LoginUser extends StatefulWidget {
   const LoginUser({super.key});
@@ -67,9 +67,10 @@ class _LoginUserState extends State<LoginUser> {
     return Scaffold(
       backgroundColor: kLightGreyColor,
       appBar: AppBar(
-        title: const Text('User Login',
-            style:
-                TextStyle(color: kWhiteColor, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'User Login',
+          style: TextStyle(color: kWhiteColor, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: kPrimaryColor,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -89,7 +90,10 @@ class _LoginUserState extends State<LoginUser> {
                   controller: _usernameController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: _inputDecoration('Username (Email)').copyWith(
-                    prefixIcon: const Icon(Icons.account_circle, color: kGreyColor),
+                    prefixIcon: const Icon(
+                      Icons.account_circle,
+                      color: kGreyColor,
+                    ),
                   ),
                   validator: (v) => v!.isEmpty ? "Username is required" : null,
                 ),
@@ -156,11 +160,10 @@ class _LoginUserState extends State<LoginUser> {
                 color: Colors.black.withOpacity(0.1),
                 blurRadius: 15,
                 offset: const Offset(0, 5),
-              )
+              ),
             ],
           ),
-          child:
-              Image.asset('assets/wlc_logo.png', width: 80, height: 80),
+          child: Image.asset('assets/wlc_logo.png', width: 80, height: 80),
         ),
         const SizedBox(height: 20),
         const Text(
@@ -181,22 +184,21 @@ class _LoginUserState extends State<LoginUser> {
   }
 
   InputDecoration _inputDecoration(String hint) => InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: kGreyColor.withOpacity(0.3)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-        ),
-      );
+    hintText: hint,
+    filled: true,
+    fillColor: Colors.white,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide.none,
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(color: kGreyColor.withOpacity(0.3)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+    ),
+  );
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/providers/auth_provider.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/providers/auth_provider.dart';
 import 'package:intl/intl.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -35,16 +35,15 @@ class _NotificationPageState extends State<NotificationPage> {
           ),
         ],
       ),
-      body:
-          allNotifications.isEmpty
-              ? _buildEmptyState()
-              : ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: allNotifications.length,
-                itemBuilder: (context, index) {
-                  return _buildNotificationCard(allNotifications[index]);
-                },
-              ),
+      body: allNotifications.isEmpty
+          ? _buildEmptyState()
+          : ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: allNotifications.length,
+              itemBuilder: (context, index) {
+                return _buildNotificationCard(allNotifications[index]);
+              },
+            ),
     );
   }
 
@@ -69,13 +68,9 @@ class _NotificationPageState extends State<NotificationPage> {
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(15),
-        border:
-            isUnread
-                ? Border.all(
-                  color: kPrimaryColor.withValues(alpha: 0.3),
-                  width: 1,
-                )
-                : null,
+        border: isUnread
+            ? Border.all(color: kPrimaryColor.withValues(alpha: 0.3), width: 1)
+            : null,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -116,8 +111,9 @@ class _NotificationPageState extends State<NotificationPage> {
           ),
         ),
         leading: CircleAvatar(
-          backgroundColor:
-              isUnread ? kPrimaryColor : kGreyColor.withValues(alpha: 0.2),
+          backgroundColor: isUnread
+              ? kPrimaryColor
+              : kGreyColor.withValues(alpha: 0.2),
           child: Icon(
             isUnread ? Icons.mark_email_unread : Icons.mark_email_read,
             color: isUnread ? kWhiteColor : kGreyColor,
@@ -135,8 +131,8 @@ class _NotificationPageState extends State<NotificationPage> {
 
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
-// import 'package:eduwlc/constants/constant.dart';
-// import 'package:eduwlc/providers/auth_provider.dart';
+// import 'package:m_scms/constants/constant.dart';
+// import 'package:m_scms/providers/auth_provider.dart';
 // import 'package:intl/intl.dart';
 
 // class NotificationPage extends StatefulWidget {

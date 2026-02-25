@@ -1,4 +1,4 @@
-package com.wlc.eduwlc
+package com.wlc.m_scms
 
 import io.flutter.embedding.android.FlutterActivity
 

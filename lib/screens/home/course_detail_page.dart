@@ -1,5 +1,5 @@
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/models/course.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/models/course.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailPage extends StatelessWidget {

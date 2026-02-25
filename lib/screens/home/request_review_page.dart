@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/providers/auth_provider.dart';
-import 'package:eduwlc/services/auth_service.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/providers/auth_provider.dart';
+import 'package:m_scms/services/auth_service.dart';
 
 class RequestReviewPage extends StatefulWidget {
   const RequestReviewPage({super.key});
@@ -47,6 +47,8 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildHeaderCard(),
+              const SizedBox(height: 24),
               const Text(
                 "Select Teacher/Subject",
                 style: TextStyle(
@@ -60,14 +62,14 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
               DropdownButtonFormField<int>(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: kLightGreyColor.withOpacity(0.5),
+                  fillColor: kLightGreyColor.withValues(alpha: 0.5),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,
                   ),
                 ),
                 hint: const Text("Choose a course"),
-                value: _selectedTeacherId,
+                initialValue: _selectedTeacherId,
                 items:
                     enrollments.map<DropdownMenuItem<int>>((dynamic emp) {
                       final course = emp['course_offering'];
@@ -127,10 +129,9 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
                               fontSize: 16,
                             ),
                           ),
-                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -150,7 +151,7 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: kPrimaryColor.withOpacity(0.3),
+            color: kPrimaryColor.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -160,7 +161,7 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundColor: kWhiteColor.withOpacity(0.2),
+            backgroundColor: kWhiteColor.withValues(alpha: 0.2),
             child: const Icon(Icons.rate_review, color: kWhiteColor, size: 30),
           ),
           const SizedBox(height: 16),
@@ -177,7 +178,7 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
             'Your teacher will be notified of your request.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: kWhiteColor.withOpacity(0.8),
+              color: kWhiteColor.withValues(alpha: 0.8),
               fontSize: 14,
             ),
           ),
@@ -221,31 +222,33 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
   }
 
   Widget _buildLabel(String text) => Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Text(
-          text,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: kDarkGreyColor, fontSize: 16),
-        ),
-      );
+    padding: const EdgeInsets.only(bottom: 8.0),
+    child: Text(
+      text,
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        color: kDarkGreyColor,
+        fontSize: 16,
+      ),
+    ),
+  );
 
   InputDecoration _inputDecoration(String hint) => InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: kGreyColor.withOpacity(0.5)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: kGreyColor.withOpacity(0.3)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-        ),
-      );
+    hintText: hint,
+    filled: true,
+    fillColor: Colors.white,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(color: kGreyColor.withValues(alpha: 0.5)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(color: kGreyColor.withValues(alpha: 0.3)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+    ),
+  );
 }

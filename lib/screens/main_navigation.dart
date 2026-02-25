@@ -1,8 +1,8 @@
-import 'package:eduwlc/screens/home/course_page.dart';
+import 'package:m_scms/screens/home/course_page.dart';
 import 'package:flutter/material.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/screens/home/home_page.dart';
-import 'package:eduwlc/screens/home/profile_page.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/screens/home/home_page.dart';
+import 'package:m_scms/screens/home/profile_page.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});

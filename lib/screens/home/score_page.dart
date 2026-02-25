@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/providers/auth_provider.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/providers/auth_provider.dart';
 
 class ScorePage extends StatefulWidget {
   const ScorePage({super.key});
@@ -19,12 +19,9 @@ class _ScorePageState extends State<ScorePage> {
     List<SubjectScore> dynamicScores = [];
     if (userData != null && userData['enrollments'] != null) {
       final List<dynamic> enrollmentList = userData['enrollments'];
-      dynamicScores =
-          enrollmentList
-              .map(
-                (e) => SubjectScore.fromEnrollment(e as Map<String, dynamic>),
-              )
-              .toList();
+      dynamicScores = enrollmentList
+          .map((e) => SubjectScore.fromEnrollment(e as Map<String, dynamic>))
+          .toList();
     }
 
     return Scaffold(

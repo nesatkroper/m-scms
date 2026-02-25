@@ -1,4 +1,4 @@
-import 'package:eduwlc/models/subject.dart';
+import 'package:m_scms/models/subject.dart';
 
 class Course {
   final int id;
@@ -39,29 +39,26 @@ class Course {
         json['end_time'] ?? DateTime.now().toIso8601String(),
       ),
 
-      subject:
-          json['subject'] != null
-              ? Subject.fromJson(json['subject'])
-              : Subject(
-                id: 0,
-                name: 'Unknown',
-                code: '',
-                departmentId: 0,
-                description: '',
-                creditHours: 0,
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-              ),
+      subject: json['subject'] != null
+          ? Subject.fromJson(json['subject'])
+          : Subject(
+              id: 0,
+              name: 'Unknown',
+              code: '',
+              departmentId: 0,
+              description: '',
+              creditHours: 0,
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+            ),
 
-      teacher:
-          json['teacher'] != null
-              ? Teacher.fromJson(json['teacher'])
-              : Teacher(id: 0, name: 'No Teacher', email: ''),
+      teacher: json['teacher'] != null
+          ? Teacher.fromJson(json['teacher'])
+          : Teacher(id: 0, name: 'No Teacher', email: ''),
 
-      classroom:
-          json['classroom'] != null
-              ? Classroom.fromJson(json['classroom'])
-              : Classroom(name: 'No Room', roomNumber: 'N/A'),
+      classroom: json['classroom'] != null
+          ? Classroom.fromJson(json['classroom'])
+          : Classroom(name: 'No Room', roomNumber: 'N/A'),
     );
   }
 }

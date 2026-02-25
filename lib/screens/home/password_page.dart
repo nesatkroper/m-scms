@@ -1,6 +1,6 @@
-import 'package:eduwlc/services/auth_service.dart';
+import 'package:m_scms/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:eduwlc/constants/constant.dart';
+import 'package:m_scms/constants/constant.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
@@ -115,7 +115,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   controller: _newPassController,
                   label: "New Password",
                   isObscure: _isObscureNew,
-                  onToggle: () => setState(() => _isObscureNew = !_isObscureNew),
+                  onToggle: () =>
+                      setState(() => _isObscureNew = !_isObscureNew),
                 ),
                 const SizedBox(height: 20),
                 _buildPasswordField(
@@ -198,10 +199,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           Text(
             'Your new password must be different from your previous used passwords.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: kWhiteColor.withOpacity(0.8),
-              fontSize: 14,
-            ),
+            style: TextStyle(color: kWhiteColor.withOpacity(0.8), fontSize: 14),
           ),
         ],
       ),
@@ -222,9 +220,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           child: Text(
             label,
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kDarkGreyColor,
-                fontSize: 16),
+              fontWeight: FontWeight.bold,
+              color: kDarkGreyColor,
+              fontSize: 16,
+            ),
           ),
         ),
         TextFormField(
@@ -246,22 +245,21 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   }
 
   InputDecoration _inputDecoration(String hint) => InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: kGreyColor.withOpacity(0.5)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: kGreyColor.withOpacity(0.3)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-        ),
-      );
+    hintText: hint,
+    filled: true,
+    fillColor: Colors.white,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(color: kGreyColor.withOpacity(0.5)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(color: kGreyColor.withOpacity(0.3)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+    ),
+  );
 }

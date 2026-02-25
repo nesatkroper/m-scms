@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:eduwlc/constants/app_url.dart';
+import 'package:m_scms/constants/app_url.dart';
 import 'package:http/http.dart' as http;
-import 'package:eduwlc/models/subject.dart';
-import 'package:eduwlc/services/auth_service.dart';
+import 'package:m_scms/models/subject.dart';
+import 'package:m_scms/services/auth_service.dart';
 
 class SubjectService {
   static String get _baseApiUrl => Appurl.url;

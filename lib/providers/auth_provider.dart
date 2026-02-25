@@ -1,9 +1,9 @@
-import 'package:eduwlc/services/course_service.dart';
+import 'package:m_scms/services/course_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:eduwlc/services/auth_service.dart';
-import 'package:eduwlc/services/subject_service.dart';
-import 'package:eduwlc/models/subject.dart';
-import 'package:eduwlc/models/course.dart';
+import 'package:m_scms/services/auth_service.dart';
+import 'package:m_scms/services/subject_service.dart';
+import 'package:m_scms/models/subject.dart';
+import 'package:m_scms/models/course.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _isLoading = false;
@@ -63,11 +63,10 @@ class AuthProvider with ChangeNotifier {
         if (_userData!.containsKey('enrollments') &&
             _userData!['enrollments'] != null) {
           final List<dynamic> enrollmentList = _userData!['enrollments'];
-          _myCourses =
-              enrollmentList
-                  .where((e) => e != null)
-                  .map((e) => Course.fromJson(e))
-                  .toList();
+          _myCourses = enrollmentList
+              .where((e) => e != null)
+              .map((e) => Course.fromJson(e))
+              .toList();
         } else {
           _myCourses = [];
         }

@@ -1,10 +1,10 @@
-import 'package:eduwlc/providers/auth_provider.dart';
-import 'package:eduwlc/screens/home/course_page.dart';
-import 'package:eduwlc/screens/home/notification_page.dart';
-import 'package:eduwlc/screens/home/request_review_page.dart';
-import 'package:eduwlc/screens/home/subject_page.dart';
+import 'package:m_scms/providers/auth_provider.dart';
+import 'package:m_scms/screens/home/course_page.dart';
+import 'package:m_scms/screens/home/notification_page.dart';
+import 'package:m_scms/screens/home/request_review_page.dart';
+import 'package:m_scms/screens/home/subject_page.dart';
 import 'package:flutter/material.dart';
-import 'package:eduwlc/constants/constant.dart';
+import 'package:m_scms/constants/constant.dart';
 import 'package:provider/provider.dart';
 import 'score_page.dart';
 

@@ -1,6 +1,6 @@
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/providers/auth_provider.dart';
-import 'package:eduwlc/screens/main_navigation.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/providers/auth_provider.dart';
+import 'package:m_scms/screens/main_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'auth/login_user.dart';
@@ -18,11 +18,9 @@ class Splash extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder:
-                (_) =>
-                    authProvider.isAuthenticated
-                        ? const MainNavigation()
-                        : const LoginUser(),
+            builder: (_) => authProvider.isAuthenticated
+                ? const MainNavigation()
+                : const LoginUser(),
           ),
         );
       });
@@ -84,19 +82,18 @@ class Splash extends StatelessWidget {
               left: 0,
               right: 0,
               child: Center(
-                child:
-                    authProvider.isLoading
-                        ? const SizedBox(
-                          width: 30,
-                          height: 30,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              kPrimaryColor,
-                            ),
+                child: authProvider.isLoading
+                    ? const SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            kPrimaryColor,
                           ),
-                        )
-                        : const SizedBox.shrink(),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
             ),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/providers/auth_provider.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/providers/auth_provider.dart';
 
 class EnrollmentPage extends StatefulWidget {
   const EnrollmentPage({super.key});

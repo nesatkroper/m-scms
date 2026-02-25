@@ -1,14 +1,14 @@
-import 'package:eduwlc/providers/auth_provider.dart';
-import 'package:eduwlc/screens/auth/login_user.dart';
-import 'package:eduwlc/screens/home/about_page.dart';
-import 'package:eduwlc/screens/home/enrollment_page.dart';
-import 'package:eduwlc/screens/home/notification_page.dart';
-import 'package:eduwlc/screens/home/password_page.dart';
-import 'package:eduwlc/screens/home/score_page.dart';
+import 'package:m_scms/providers/auth_provider.dart';
+import 'package:m_scms/screens/auth/login_user.dart';
+import 'package:m_scms/screens/home/about_page.dart';
+import 'package:m_scms/screens/home/enrollment_page.dart';
+import 'package:m_scms/screens/home/notification_page.dart';
+import 'package:m_scms/screens/home/password_page.dart';
+import 'package:m_scms/screens/home/score_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eduwlc/constants/constant.dart';
-import 'package:eduwlc/constants/app_url.dart';
+import 'package:m_scms/constants/constant.dart';
+import 'package:m_scms/constants/app_url.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -52,10 +52,9 @@ class ProfilePage extends StatelessWidget {
     final String userEmail = userData['email'] ?? 'N/A';
     final String avatarPath = userData['avatar'] ?? '';
 
-    final String fullAvatarUrl =
-        avatarPath.isNotEmpty
-            ? "${Appurl.url}/$avatarPath".replaceFirst('127.0.0.1', '10.0.2.2')
-            : '';
+    final String fullAvatarUrl = avatarPath.isNotEmpty
+        ? "${Appurl.url}/$avatarPath".replaceFirst('127.0.0.1', '10.0.2.2')
+        : '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -253,27 +252,25 @@ class ProfilePage extends StatelessWidget {
         radius: 50,
         backgroundColor: kWhiteColor,
         child: ClipOval(
-          child:
-              url.isNotEmpty
-                  ? Image.network(
-                    url,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                    errorBuilder:
-                        (context, error, stackTrace) => Image.asset(
-                          'assets/wlc_logo.png',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.contain,
-                        ),
-                  )
-                  : Image.asset(
+          child: url.isNotEmpty
+              ? Image.network(
+                  url,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
                     'assets/wlc_logo.png',
                     width: 100,
                     height: 100,
                     fit: BoxFit.contain,
                   ),
+                )
+              : Image.asset(
+                  'assets/wlc_logo.png',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.contain,
+                ),
         ),
       ),
     );

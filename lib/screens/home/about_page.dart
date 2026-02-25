@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eduwlc/constants/constant.dart';
+import 'package:m_scms/constants/constant.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});
@@ -52,7 +52,11 @@ class AboutAppPage extends StatelessWidget {
         ),
       ),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: kWhiteColor, size: 20),
+        icon: const Icon(
+          Icons.arrow_back_ios_new,
+          color: kWhiteColor,
+          size: 20,
+        ),
         onPressed: () => Navigator.pop(context),
       ),
     );
@@ -67,10 +71,7 @@ class AboutAppPage extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            kPrimaryColor,
-            kPrimaryColor.withOpacity(0.85),
-          ],
+          colors: [kPrimaryColor, kPrimaryColor.withOpacity(0.85)],
         ),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(40),
@@ -106,7 +107,11 @@ class AboutAppPage extends StatelessWidget {
                 height: 70,
                 width: 70,
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.school, size: 70, color: kPrimaryColor);
+                  return const Icon(
+                    Icons.school,
+                    size: 70,
+                    color: kPrimaryColor,
+                  );
                 },
               ),
             ),
@@ -199,11 +204,7 @@ class AboutAppPage extends StatelessWidget {
             "The School Information System is a final-year thesis project designed to modernize school operations at WLC. "
             "The system provides students, teachers, and administrators with real-time access to academic records, schedules, "
             "announcements, and enrollment information through a modern mobile application.",
-            style: TextStyle(
-              color: kDarkGreyColor,
-              fontSize: 14,
-              height: 1.7,
-            ),
+            style: TextStyle(color: kDarkGreyColor, fontSize: 14, height: 1.7),
           ),
         ],
       ),
@@ -242,7 +243,12 @@ class AboutAppPage extends StatelessWidget {
         description: "RESEARCH SPECIALIST",
         role: "Researcher",
         image: "assets/Vinhean_Reathey.jpg",
-        skills: ["Research Methodology", "Data Analysis", "Academic Writing", "Literature Review"],
+        skills: [
+          "Research Methodology",
+          "Data Analysis",
+          "Academic Writing",
+          "Literature Review",
+        ],
         color: const Color(0xFF10B981),
       ),
       _TeamMember(
@@ -299,10 +305,7 @@ class AboutAppPage extends StatelessWidget {
               offset: const Offset(0, 4),
             ),
           ],
-          border: Border.all(
-            color: member.color.withOpacity(0.1),
-            width: 1.5,
-          ),
+          border: Border.all(color: member.color.withOpacity(0.1), width: 1.5),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -495,10 +498,7 @@ class AboutAppPage extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: kPrimaryColor.withOpacity(0.1),
-          width: 1.5,
-        ),
+        border: Border.all(color: kPrimaryColor.withOpacity(0.1), width: 1.5),
       ),
       child: Column(
         children: [
