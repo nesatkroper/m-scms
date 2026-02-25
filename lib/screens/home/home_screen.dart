@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   child: _buildCategoryCard(
                     icon: Icons.category,
                     title: 'All Subjects',
-                    color: kCategoryColor,
+                    color: Colors.purple,
                   ),
                 ),
 
@@ -162,8 +162,14 @@ class _HomePageState extends State<HomePage> {
                   child: _buildCategoryCard(
                     icon: Icons.score,
                     title: 'My Score',
-                    color: kLeaderboardColor,
+                    color: Colors.green,
                   ),
+                ),
+
+                _buildCategoryCard(
+                  icon: Icons.school,
+                  title: 'Class',
+                  color: Colors.blue,
                 ),
 
                 GestureDetector(
@@ -183,15 +189,9 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 _buildCategoryCard(
-                  icon: Icons.school,
-                  title: 'Class',
-                  color: kBoutiqueColor,
-                ),
-
-                _buildCategoryCard(
                   icon: Icons.store,
                   title: 'Book',
-                  color: kBookstoreColor,
+                  color: Colors.amber,
                 ),
               ],
             ),
