@@ -96,7 +96,7 @@ class _CourseScreenState extends State<CourseScreen> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [kPrimaryColor, kSecondaryColor],
+          colors: [kPrimaryColor, kPrimaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

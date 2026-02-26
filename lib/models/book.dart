@@ -29,17 +29,25 @@ class Book {
       // to ensure it works on emulators (10.0.2.2) or physical devices.
       final baseUrl = Constant.url;
       final localHosts = ['scms.local', 'localhost', '127.0.0.1'];
+
+      // Ensure baseUrl doesn't have a trailing slash for replacement
+      String cleanBaseUrl =
+          baseUrl.endsWith('/')
+              ? baseUrl.substring(0, baseUrl.length - 1)
+              : baseUrl;
+
       for (var host in localHosts) {
         if (processedUrl.contains(host)) {
           processedUrl = processedUrl.replaceAll(
-            RegExp('https?://$host'),
-            baseUrl,
+            RegExp('https?://$host(:\\d+)?'),
+            cleanBaseUrl,
           );
         }
       }
 
       try {
-        return Uri.encodeFull(processedUrl);
+        // Decode first to prevent double encoding, then encode properly
+        return Uri.encodeFull(Uri.decodeFull(processedUrl));
       } catch (e) {
         return processedUrl.replaceAll(' ', '%20');
       }
@@ -51,7 +59,9 @@ class Book {
       url: sanitizeUrl(json['url']),
       thumbnail: sanitizeUrl(json['thumbnail']),
       size: json['size'] ?? '0 MB',
-      extension: json['extension'] ?? 'pdf',
+      extension:
+          json['extension'] ??
+          (json['filename']?.toString().split('.').last ?? 'pdf'),
       lastModified:
           DateTime.tryParse(json['last_modified'] ?? '') ?? DateTime.now(),
     );

@@ -51,13 +51,27 @@ class ProfileScreen extends StatelessWidget {
     final String userEmail = userData['email'] ?? 'N/A';
     final String avatarPath = userData['avatar'] ?? '';
 
-    final String fullAvatarUrl =
-        avatarPath.isNotEmpty
-            ? "${Constant.url}/$avatarPath".replaceFirst(
-              '127.0.0.1',
-              '10.0.2.2',
-            )
-            : '';
+    String fullAvatarUrl = '';
+    if (avatarPath.isNotEmpty) {
+      if (avatarPath.startsWith('http')) {
+        fullAvatarUrl = avatarPath;
+      } else {
+        // Prepend storage/ if it's a relative path from Laravel
+        final path =
+            avatarPath.startsWith('storage/')
+                ? avatarPath
+                : 'storage/$avatarPath';
+        fullAvatarUrl = "${Constant.url}/$path";
+      }
+
+      // Ensure local domains resolve to 10.0.2.2 on Android Emulator
+      fullAvatarUrl = fullAvatarUrl
+          .replaceAll('127.0.0.1', '10.0.2.2')
+          .replaceAll('localhost', '10.0.2.2')
+          .replaceAll('scms.local', '10.0.2.2');
+
+      debugPrint("Constructed Avatar URL: $fullAvatarUrl");
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
