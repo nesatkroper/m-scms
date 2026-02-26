@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-class CoursePage extends StatefulWidget {
-  const CoursePage({super.key});
+class CourseScreen extends StatefulWidget {
+  const CourseScreen({super.key});
 
   @override
-  State<CoursePage> createState() => _CoursePageState();
+  State<CourseScreen> createState() => _CourseScreenState();
 }
 
-class _CoursePageState extends State<CoursePage> {
+class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
@@ -196,7 +196,7 @@ class _CoursePageState extends State<CoursePage> {
                 () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(course: course),
+                    builder: (context) => CourseDetailScreen(course: course),
                   ),
                 ),
             child: Padding(

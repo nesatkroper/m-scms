@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:m_scms/constants/constant.dart';
 
-class AboutAppPage extends StatelessWidget {
-  const AboutAppPage({super.key});
+class AboutAppScreen extends StatelessWidget {
+  const AboutAppScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -269,7 +269,7 @@ class AboutAppPage extends StatelessWidget {
       children:
           members.asMap().entries.map((entry) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: 8),
               child: _buildMemberCard(entry.value, entry.key),
             );
           }).toList(),

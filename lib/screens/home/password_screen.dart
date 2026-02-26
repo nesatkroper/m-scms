@@ -2,14 +2,14 @@ import 'package:m_scms/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:m_scms/constants/constant.dart';
 
-class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<ChangePasswordPage> createState() => _ChangePasswordPageState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _ChangePasswordPageState extends State<ChangePasswordPage> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _currentPassController = TextEditingController();
   final TextEditingController _newPassController = TextEditingController();
@@ -107,24 +107,28 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   controller: _currentPassController,
                   label: "Current Password",
                   isObscure: _isObscureCurrent,
-                  onToggle: () =>
-                      setState(() => _isObscureCurrent = !_isObscureCurrent),
+                  onToggle:
+                      () => setState(
+                        () => _isObscureCurrent = !_isObscureCurrent,
+                      ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 _buildPasswordField(
                   controller: _newPassController,
                   label: "New Password",
                   isObscure: _isObscureNew,
-                  onToggle: () =>
-                      setState(() => _isObscureNew = !_isObscureNew),
+                  onToggle:
+                      () => setState(() => _isObscureNew = !_isObscureNew),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 _buildPasswordField(
                   controller: _confirmPassController,
                   label: "Confirm New Password",
                   isObscure: _isObscureConfirm,
-                  onToggle: () =>
-                      setState(() => _isObscureConfirm = !_isObscureConfirm),
+                  onToggle:
+                      () => setState(
+                        () => _isObscureConfirm = !_isObscureConfirm,
+                      ),
                 ),
                 const SizedBox(height: 40),
                 SizedBox(
@@ -140,16 +144,19 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       elevation: 5,
                       shadowColor: kPrimaryColor.withOpacity(0.4),
                     ),
-                    child: _isLoading
-                        ? const CircularProgressIndicator(color: kWhiteColor)
-                        : const Text(
-                            "Update Password",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                    child:
+                        _isLoading
+                            ? const CircularProgressIndicator(
                               color: kWhiteColor,
+                            )
+                            : const Text(
+                              "Update Password",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: kWhiteColor,
+                              ),
                             ),
-                          ),
                   ),
                 ),
               ],
@@ -166,7 +173,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [kPrimaryColor, const Color(0xFF6A1B9A)],
+          colors: [kPrimaryColor, kPrimaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

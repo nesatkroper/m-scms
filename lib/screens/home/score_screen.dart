@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
 
-class ScorePage extends StatefulWidget {
-  const ScorePage({super.key});
+class ScoreScreen extends StatefulWidget {
+  const ScoreScreen({super.key});
 
   @override
-  State<ScorePage> createState() => _ScorePageState();
+  State<ScoreScreen> createState() => _ScoreScreenState();
 }
 
-class _ScorePageState extends State<ScorePage> {
+class _ScoreScreenState extends State<ScoreScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);

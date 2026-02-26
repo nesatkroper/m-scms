@@ -10,14 +10,14 @@ import 'package:m_scms/screens/home/book_screen.dart';
 import 'score_screen.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const NotificationPage(),
+                    builder: (context) => const NotificationScreen(),
                   ),
                 );
               },
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CoursePage(),
+                        builder: (context) => const CourseScreen(),
                       ),
                     );
                   },
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SubjectPage(),
+                        builder: (context) => const SubjectScreen(),
                       ),
                     );
                   },
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ScorePage(),
+                        builder: (context) => const ScoreScreen(),
                       ),
                     );
                   },
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RequestReviewPage(),
+                        builder: (context) => const RequestReviewScreen(),
                       ),
                     );
                   },
@@ -192,7 +192,9 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const BookPage()),
+                      MaterialPageRoute(
+                        builder: (context) => const BookScreen(),
+                      ),
                     );
                   },
                   child: _buildCategoryCard(
@@ -230,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CoursePage(),
+                        builder: (context) => const CourseScreen(),
                       ),
                     );
                   },
@@ -273,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                                 MaterialPageRoute(
                                   builder:
                                       (context) =>
-                                          CourseDetailPage(course: course),
+                                          CourseDetailScreen(course: course),
                                 ),
                               );
                             },

@@ -3,9 +3,9 @@ import 'package:m_scms/models/course.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class CourseDetailPage extends StatelessWidget {
+class CourseDetailScreen extends StatelessWidget {
   final Course course;
-  const CourseDetailPage({super.key, required this.course});
+  const CourseDetailScreen({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {

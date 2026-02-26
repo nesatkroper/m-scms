@@ -4,14 +4,14 @@ import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
 import 'package:intl/intl.dart';
 
-class NotificationPage extends StatefulWidget {
-  const NotificationPage({super.key});
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({super.key});
 
   @override
-  State<NotificationPage> createState() => _NotificationPageState();
+  State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
-class _NotificationPageState extends State<NotificationPage> {
+class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);

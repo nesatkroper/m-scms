@@ -9,14 +9,14 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
-class BookPage extends StatefulWidget {
-  const BookPage({super.key});
+class BookScreen extends StatefulWidget {
+  const BookScreen({super.key});
 
   @override
-  State<BookPage> createState() => _BookPageState();
+  State<BookScreen> createState() => _BookScreenState();
 }
 
-class _BookPageState extends State<BookPage> {
+class _BookScreenState extends State<BookScreen> {
   @override
   void initState() {
     super.initState();

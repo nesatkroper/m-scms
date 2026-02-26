@@ -1,9 +1,9 @@
 import 'package:m_scms/constants/constant.dart';
 import 'package:flutter/material.dart';
 
-class SubjectDetailPage extends StatelessWidget {
+class SubjectDetailScreen extends StatelessWidget {
   final dynamic subject;
-  const SubjectDetailPage({super.key, required this.subject});
+  const SubjectDetailScreen({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
