@@ -4,8 +4,8 @@ import 'package:m_scms/screens/home/subject_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SubjectPage extends StatelessWidget {
-  const SubjectPage({super.key});
+class SubjectScreen extends StatelessWidget {
+  const SubjectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +145,7 @@ class SubjectPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SubjectDetailPage(subject: subject),
+                builder: (context) => SubjectDetailScreen(subject: subject),
               ),
             );
           },

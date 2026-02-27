@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:m_scms/constants/constant.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,22 @@ class ProfilePage extends StatelessWidget {
     final String userEmail = userData['email'] ?? 'N/A';
     final String avatarPath = userData['avatar'] ?? '';
 
-    final String fullAvatarUrl =
-        avatarPath.isNotEmpty
-            ? "${Constant.url}/$avatarPath".replaceFirst(
-              '127.0.0.1',
-              '10.0.2.2',
-            )
-            : '';
+    String fullAvatarUrl = '';
+    if (avatarPath.isNotEmpty) {
+      if (avatarPath.startsWith('http')) {
+        fullAvatarUrl = avatarPath;
+      } else {
+        // Prepend storage/ if it's a relative path from Laravel
+        final path =
+            avatarPath.startsWith('storage/')
+                ? avatarPath
+                : 'storage/$avatarPath';
+        fullAvatarUrl = "${Constant.url}/$path";
+      }
+
+      fullAvatarUrl = Constant.resolveUrl(fullAvatarUrl);
+      debugPrint("Constructed Avatar URL: $fullAvatarUrl");
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -84,7 +93,7 @@ class ProfilePage extends StatelessWidget {
                   top: MediaQuery.of(context).padding.top + 20,
                   child: Column(
                     children: [
-                      _buildPremiumAvatar(fullAvatarUrl),
+                      _buildPremiumAvatar(fullAvatarUrl, avatarPath),
                       const SizedBox(height: 12),
                       Text(
                         userName,
@@ -134,7 +143,7 @@ class ProfilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EnrollmentPage(),
+                            builder: (context) => EnrollmentScreen(),
                           ),
                         );
                       },
@@ -147,7 +156,7 @@ class ProfilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ScorePage(),
+                            builder: (context) => const ScoreScreen(),
                           ),
                         );
                       },
@@ -167,7 +176,7 @@ class ProfilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ChangePasswordPage(),
+                            builder: (context) => const ChangePasswordScreen(),
                           ),
                         );
                       },
@@ -180,7 +189,7 @@ class ProfilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const NotificationPage(),
+                            builder: (context) => const NotificationScreen(),
                           ),
                         );
                       },
@@ -207,7 +216,7 @@ class ProfilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AboutAppPage(),
+                            builder: (context) => const AboutAppScreen(),
                           ),
                         );
                       },
@@ -232,7 +241,7 @@ class ProfilePage extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [kPrimaryColor, Color(0xFF634EFF)],
+          colors: [kPrimaryColor, kPrimaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -244,7 +253,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildPremiumAvatar(String url) {
+  Widget _buildPremiumAvatar(String url, String avatarPath) {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: const BoxDecoration(
@@ -271,7 +280,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                   )
                   : Image.asset(
-                    'assets/wlc_logo.png',
+                    avatarPath.isNotEmpty ? avatarPath : 'assets/wlc_logo.png',
                     width: 100,
                     height: 100,
                     fit: BoxFit.contain,

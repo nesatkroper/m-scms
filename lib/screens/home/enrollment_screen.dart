@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
 
-class EnrollmentPage extends StatefulWidget {
-  const EnrollmentPage({super.key});
+class EnrollmentScreen extends StatefulWidget {
+  const EnrollmentScreen({super.key});
 
   @override
-  State<EnrollmentPage> createState() => _EnrollmentPageState();
+  State<EnrollmentScreen> createState() => _EnrollmentScreenState();
 }
 
-class _EnrollmentPageState extends State<EnrollmentPage> {
+class _EnrollmentScreenState extends State<EnrollmentScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -66,10 +66,10 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
   Widget _buildHeaderCard(int count) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [kPrimaryColor, Color(0xFF6A1B9A)],
+          colors: [kPrimaryColor, kPrimaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -119,7 +119,7 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
     final status = data['status'] ?? 'N/A';
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(24),
@@ -174,7 +174,7 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
           ),
 
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 _buildDetailRow(
@@ -183,21 +183,21 @@ class _EnrollmentPageState extends State<EnrollmentPage> {
                   Icons.person_outline,
                   Colors.blue,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 _buildDetailRow(
                   "Schedule",
-                  "${offering['schedule']} (${offering['time_slot']})",
+                  "${offering['schedule'].toUpperCase()} (${offering['time_slot'].toUpperCase()})",
                   Icons.access_time,
                   Colors.orange,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 _buildDetailRow(
                   "Classroom",
                   "Room ${classroom['room_number'] ?? 'N/A'}",
                   Icons.location_on_outlined,
                   Colors.teal,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 _buildDetailRow(
                   "Course Fee",
                   "\$${offering['fee']}",

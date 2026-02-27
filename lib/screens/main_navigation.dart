@@ -1,3 +1,4 @@
+import 'package:m_scms/screens/home/book_screen.dart';
 import 'package:m_scms/screens/home/course_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:m_scms/constants/constant.dart';
@@ -15,9 +16,10 @@ class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
-    const CoursePage(),
-    const ProfilePage(),
+    const HomeScreen(),
+    const CourseScreen(),
+    const BookScreen(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -32,11 +34,12 @@ class _MainNavigationState extends State<MainNavigation> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color.fromARGB(255, 75, 51, 212),
+        selectedItemColor: kPrimaryColor,
         unselectedItemColor: kGreyColor,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.subject), label: 'Course'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Book'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My'),
         ],
       ),

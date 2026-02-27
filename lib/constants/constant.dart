@@ -39,5 +39,38 @@ const kLiveColor = Color(0xFF86EFAC);
 const kLeaderboardColor = Color(0xFF059669);
 
 class Constant {
-  static const url = "http://scms.local";
+  static const url = "http://192.168.1.3";
+
+  static String resolveUrl(String? originalUrl) {
+    if (originalUrl == null || originalUrl.isEmpty) return '';
+
+    String processedUrl = originalUrl.trim();
+    final baseUrl = Constant.url;
+    final localHosts = [
+      'scms.local',
+      'localhost',
+      '127.0.0.1',
+      '192.168.1.3:8200',
+    ];
+
+    String cleanBaseUrl =
+        baseUrl.endsWith('/')
+            ? baseUrl.substring(0, baseUrl.length - 1)
+            : baseUrl;
+
+    for (var host in localHosts) {
+      if (processedUrl.contains(host)) {
+        processedUrl = processedUrl.replaceAll(
+          RegExp('https?://$host(:\\d+)?'),
+          cleanBaseUrl,
+        );
+      }
+    }
+
+    try {
+      return Uri.encodeFull(Uri.decodeFull(processedUrl));
+    } catch (e) {
+      return processedUrl.replaceAll(' ', '%20');
+    }
+  }
 }

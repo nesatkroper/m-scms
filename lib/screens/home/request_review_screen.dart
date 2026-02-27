@@ -4,14 +4,14 @@ import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/providers/auth_provider.dart';
 import 'package:m_scms/services/auth_service.dart';
 
-class RequestReviewPage extends StatefulWidget {
-  const RequestReviewPage({super.key});
+class RequestReviewScreen extends StatefulWidget {
+  const RequestReviewScreen({super.key});
 
   @override
-  State<RequestReviewPage> createState() => _RequestReviewPageState();
+  State<RequestReviewScreen> createState() => _RequestReviewScreenState();
 }
 
-class _RequestReviewPageState extends State<RequestReviewPage> {
+class _RequestReviewScreenState extends State<RequestReviewScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titleController = TextEditingController(
     text: "Review Request",
@@ -73,8 +73,7 @@ class _RequestReviewPageState extends State<RequestReviewPage> {
                     enrollments.map<DropdownMenuItem<int>>((dynamic emp) {
                       final course = emp['course_offering'];
                       return DropdownMenuItem<int>(
-                        value:
-                            course['teacher_id'],
+                        value: course['teacher_id'],
                         child: Text(
                           "${course['subject']['name']} (ID: ${course['teacher_id']})",
                         ),
