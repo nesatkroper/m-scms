@@ -64,12 +64,7 @@ class ProfileScreen extends StatelessWidget {
         fullAvatarUrl = "${Constant.url}/$path";
       }
 
-      // Ensure local domains resolve to 10.0.2.2 on Android Emulator
-      fullAvatarUrl = fullAvatarUrl
-          .replaceAll('127.0.0.1', '10.0.2.2')
-          .replaceAll('localhost', '10.0.2.2')
-          .replaceAll('scms.local', '10.0.2.2');
-
+      fullAvatarUrl = Constant.resolveUrl(fullAvatarUrl);
       debugPrint("Constructed Avatar URL: $fullAvatarUrl");
     }
 

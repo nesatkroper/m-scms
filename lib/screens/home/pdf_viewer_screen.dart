@@ -1,10 +1,11 @@
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:m_scms/constants/constant.dart';
 import 'package:m_scms/models/book.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'dart:io' as io;
 
 class PdfViewerScreen extends StatefulWidget {
   final Book book;
@@ -15,7 +16,7 @@ class PdfViewerScreen extends StatefulWidget {
 }
 
 class _PdfViewerScreenState extends State<PdfViewerScreen> {
-  File? _localFile;
+  dynamic _localFile; // Use dynamic to avoid File issues on web
   bool _isLoading = true;
   String? _errorMessage;
 
@@ -26,6 +27,15 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   }
 
   Future<void> _downloadPdf() async {
+    if (kIsWeb) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+      return;
+    }
+
     try {
       if (!mounted) return;
       setState(() {
@@ -42,7 +52,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
             .last
             .replaceAll('%20', '_')
             .replaceAll(' ', '_');
-        final file = File('${directory.path}/$fileName');
+        final file = io.File('${directory.path}/$fileName');
         await file.writeAsBytes(response.bodyBytes);
 
         if (mounted) {
@@ -131,6 +141,8 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                   ),
                 ),
               )
+              : kIsWeb
+              ? SfPdfViewer.network(widget.book.url)
               : SfPdfViewer.file(_localFile!),
     );
   }
