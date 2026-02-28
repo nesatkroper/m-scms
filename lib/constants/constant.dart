@@ -46,7 +46,12 @@ class Constant {
 
     String processedUrl = originalUrl.trim();
     final baseUrl = Constant.url;
-    final localHosts = ['scms.local', '192.168.1.3:8200'];
+    final localHosts = [
+      'scms.local',
+      '192.168.1.3:8200',
+      'localhost',
+      '127.0.0.1',
+    ];
 
     String cleanBaseUrl =
         baseUrl.endsWith('/')

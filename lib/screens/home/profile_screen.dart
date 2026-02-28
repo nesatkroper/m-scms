@@ -50,24 +50,14 @@ class ProfileScreen extends StatelessWidget {
 
     final String userName = userData['name'] ?? 'User Name N/A';
     final String userEmail = userData['email'] ?? 'N/A';
-    final String avatarPath = userData['avatar'] ?? '';
-
-    String fullAvatarUrl = '';
-    if (avatarPath.isNotEmpty) {
-      if (avatarPath.startsWith('http')) {
-        fullAvatarUrl = avatarPath;
-      } else {
-        // Prepend storage/ if it's a relative path from Laravel
-        final path =
-            avatarPath.startsWith('storage/')
-                ? avatarPath
-                : 'storage/$avatarPath';
-        fullAvatarUrl = "${Constant.url}/$path";
-      }
-
-      fullAvatarUrl = Constant.resolveUrl(fullAvatarUrl);
-      debugPrint("Constructed Avatar URL: $fullAvatarUrl");
-    }
+    final String avatarPath =
+        (userData['avatar'] ??
+                userData['avatar_url'] ??
+                userData['profile_photo_url'] ??
+                '')
+            .toString()
+            .trim();
+    final String fullAvatarUrl = Constant.resolveUrl(avatarPath);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
