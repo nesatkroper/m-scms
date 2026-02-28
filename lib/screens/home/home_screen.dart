@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Search for your grade, course, training type...',
+                      'Search for course, training type...',
                       style: TextStyle(color: kGreyColor, fontSize: 14),
                     ),
                   ),

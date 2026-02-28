@@ -175,10 +175,8 @@ class _ClassroomScreenState extends State<ClassroomScreen> {
             ),
           ],
         ),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          // You can add navigation to detail screen if needed
-        },
+        // trailing: const Icon(Icons.chevron_right),
+        // onTap: () {},
       ),
     );
   }
