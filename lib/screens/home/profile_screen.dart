@@ -1,6 +1,7 @@
 import 'package:m_scms/providers/auth_provider.dart';
 import 'package:m_scms/screens/auth/login_screen.dart';
 import 'package:m_scms/screens/home/about_screen.dart';
+import 'package:m_scms/screens/home/certificate_screen.dart';
 import 'package:m_scms/screens/home/enrollment_screen.dart';
 import 'package:m_scms/screens/home/notification_screen.dart';
 import 'package:m_scms/screens/home/password_screen.dart';
@@ -165,7 +166,14 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.card_membership,
                       title: 'Certificates',
                       color: Colors.orange,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CertificateScreen(),
+                          ),
+                        );
+                      },
                     ),
 
                     _buildModernMenuItem(

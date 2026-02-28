@@ -10,6 +10,7 @@ import 'package:m_scms/screens/home/book_screen.dart';
 import 'score_screen.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
 import 'package:m_scms/screens/home/classroom_screen.dart';
+import 'package:m_scms/screens/home/certificate_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -214,6 +215,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.amber,
                   ),
                 ),
+
+                // GestureDetector(
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => const CertificateScreen(),
+                //       ),
+                //     );
+                //   },
+                //   child: _buildCategoryCard(
+                //     icon: Icons.workspace_premium,
+                //     title: 'Certificate',
+                //     color: kAccentColor,
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(height: 32),

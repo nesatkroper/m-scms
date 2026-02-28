@@ -62,6 +62,15 @@ class Constant {
       }
     }
 
+    // Prepend base URL if it's a relative path
+    if (!processedUrl.startsWith('http') && processedUrl.isNotEmpty) {
+      if (processedUrl.startsWith('/')) {
+        processedUrl = '$cleanBaseUrl$processedUrl';
+      } else {
+        processedUrl = '$cleanBaseUrl/$processedUrl';
+      }
+    }
+
     try {
       return Uri.encodeFull(Uri.decodeFull(processedUrl));
     } catch (e) {
