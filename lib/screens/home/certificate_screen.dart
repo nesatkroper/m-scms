@@ -127,111 +127,143 @@ class _CertificateScreenState extends State<CertificateScreen> {
           ),
         ],
       ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(16),
-        leading: Container(
-          padding: EdgeInsets.all(isImage ? 0 : 12),
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: kAccentColor.withValues(alpha: 0.1),
-            shape: isImage ? BoxShape.rectangle : BoxShape.circle,
-            borderRadius: isImage ? BorderRadius.circular(12) : null,
-          ),
-          child:
-              isImage
-                  ? Image.network(
-                    fullUrl,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                    errorBuilder:
-                        (context, error, stackTrace) => const Icon(
-                          Icons.broken_image,
-                          color: kGreyColor,
-                          size: 28,
-                        ),
-                  )
-                  : const Icon(
-                    Icons.workspace_premium,
-                    color: kAccentColor,
-                    size: 28,
-                  ),
-        ),
-        title: Text(
-          subjectName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: kDarkGreyColor,
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 4),
-            Text(
-              'Course Code: ${subject['code'] ?? 'N/A'}',
-              style: const TextStyle(fontSize: 12, color: kGreyColor),
+      child: Column(
+        children: [
+          ListTile(
+            contentPadding: const EdgeInsets.all(16),
+            leading: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: kAccentColor.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.workspace_premium,
+                color: kAccentColor,
+                size: 28,
+              ),
             ),
-            const SizedBox(height: 8),
-            Row(
+            title: Text(
+              subjectName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: kDarkGreyColor,
+              ),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.check_circle, color: kSuccessColor, size: 14),
-                const SizedBox(width: 4),
+                const SizedBox(height: 4),
                 Text(
-                  'COMPLETED',
-                  style: TextStyle(
-                    color: kSuccessColor,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  'Course Code: ${subject['code'] ?? 'N/A'}',
+                  style: const TextStyle(fontSize: 12, color: kGreyColor),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.check_circle,
+                      color: kSuccessColor,
+                      size: 14,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'COMPLETED',
+                      style: TextStyle(
+                        color: kSuccessColor,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-        trailing: ElevatedButton(
-          onPressed: () {
-            if (isImage) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => ImageViewerScreen(
-                        imageUrl: fullUrl,
-                        title: "Certificate - $subjectName",
-                      ),
+            trailing: ElevatedButton(
+              onPressed: () {
+                if (isImage) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => ImageViewerScreen(
+                            imageUrl: fullUrl,
+                            title: "Certificate - $subjectName",
+                          ),
+                    ),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => PdfViewerScreen(
+                            book: Book(
+                              name: "Certificate - $subjectName",
+                              filename: certPath.split('/').last,
+                              url: fullUrl,
+                              size: "N/A",
+                              extension: "pdf",
+                              lastModified: DateTime.now(),
+                            ),
+                          ),
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kPrimaryColor,
+                foregroundColor: kWhiteColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              );
-            } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => PdfViewerScreen(
-                        book: Book(
-                          name: "Certificate - $subjectName",
-                          filename: certPath.split('/').last,
-                          url: fullUrl,
-                          size: "N/A",
-                          extension: "pdf",
-                          lastModified: DateTime.now(),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+              ),
+              child: Text(isImage ? 'Download' : 'View Cert'),
+            ),
+          ),
+          if (isImage)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.withValues(alpha: 0.2)),
+                ),
+                child: Image.network(
+                  fullUrl,
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                  errorBuilder:
+                      (context, error, stackTrace) => Container(
+                        height: 150,
+                        width: double.infinity,
+                        color: Colors.grey.withValues(alpha: 0.1),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.broken_image,
+                              color: kGreyColor,
+                              size: 40,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Certificate Image Not Found',
+                              style: TextStyle(color: kGreyColor, fontSize: 12),
+                            ),
+                          ],
                         ),
                       ),
                 ),
-              );
-            }
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kPrimaryColor,
-            foregroundColor: kWhiteColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              ),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          ),
-          child: Text(isImage ? 'Download' : 'View Cert'),
-        ),
+        ],
       ),
     );
   }
