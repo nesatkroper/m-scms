@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:m_scms/screens/home/book_screen.dart';
 import 'score_screen.dart';
 import 'package:m_scms/screens/home/course_detail_screen.dart';
+import 'package:m_scms/screens/home/classroom_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -166,10 +167,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                _buildCategoryCard(
-                  icon: Icons.school,
-                  title: 'Class',
-                  color: Colors.blue,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ClassroomScreen(),
+                      ),
+                    );
+                  },
+                  child: _buildCategoryCard(
+                    icon: Icons.school,
+                    title: 'Classroom',
+                    color: Colors.blue,
+                  ),
                 ),
 
                 GestureDetector(

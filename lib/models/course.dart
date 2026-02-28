@@ -1,4 +1,5 @@
 import 'package:m_scms/models/subject.dart';
+import 'package:m_scms/models/classroom.dart';
 
 class Course {
   final int id;
@@ -26,7 +27,6 @@ class Course {
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
-    // Check if we are parsing from an Enrollment object which nests the course offering
     final Map<String, dynamic> data =
         json.containsKey('course_offering') && json['course_offering'] != null
             ? json['course_offering']
@@ -38,7 +38,6 @@ class Course {
       schedule: data['schedule'] ?? 'N/A',
       paymentType: data['payment_type'] ?? 'N/A',
       fee: double.tryParse(data['fee'].toString()) ?? 0.0,
-      // Use join_start and join_end for the actual dates
       startTime:
           DateTime.tryParse(data['join_start']?.toString() ?? '') ??
           DateTime.tryParse(data['start_time']?.toString() ?? '') ??
@@ -70,7 +69,14 @@ class Course {
       classroom:
           data['classroom'] != null
               ? Classroom.fromJson(data['classroom'])
-              : Classroom(name: 'No Room', roomNumber: 'N/A'),
+              : Classroom(
+                id: 0,
+                name: 'No Room',
+                roomNumber: 'N/A',
+                capacity: 0,
+                createdAt: DateTime.now(),
+                updatedAt: DateTime.now(),
+              ),
     );
   }
 }
@@ -100,20 +106,6 @@ class Teacher {
       phone: json['phone'],
       avatar: json['avatar'],
       qualification: json['qualification'],
-    );
-  }
-}
-
-class Classroom {
-  final String name;
-  final String roomNumber;
-
-  Classroom({required this.name, required this.roomNumber});
-
-  factory Classroom.fromJson(Map<String, dynamic> json) {
-    return Classroom(
-      name: json['name']?.toString() ?? 'No Room',
-      roomNumber: json['room_number']?.toString() ?? 'N/A',
     );
   }
 }

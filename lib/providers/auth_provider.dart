@@ -5,7 +5,9 @@ import 'package:m_scms/services/subject_service.dart';
 import 'package:m_scms/models/subject.dart';
 import 'package:m_scms/models/course.dart';
 import 'package:m_scms/models/book.dart';
+import 'package:m_scms/models/classroom.dart';
 import 'package:m_scms/services/book_service.dart';
+import 'package:m_scms/services/classroom_service.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _isLoading = false;
@@ -13,17 +15,20 @@ class AuthProvider with ChangeNotifier {
   Map<String, dynamic>? _userData;
   List<Subject> _subjects = [];
   List<Course> _myCourses = [];
+  List<Classroom> _classrooms = [];
 
   bool get isLoading => _isLoading;
   bool get isAuthenticated => _isAuthenticated;
   Map<String, dynamic>? get userData => _userData;
   List<Subject> get subjects => _subjects;
   List<Course> get myCourses => _myCourses;
+  List<Classroom> get classrooms => _classrooms;
 
   final AuthService _authService = AuthService();
   final SubjectService _subjectService = SubjectService();
   final CourseService _courseService = CourseService();
   final BookService _bookService = BookService();
+  final ClassroomService _classroomService = ClassroomService();
 
   List<Course> _allCourses = [];
   List<Course> get allCourses => _allCourses;
@@ -105,6 +110,19 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       debugPrint("Subject fetch error: $e");
+    }
+  }
+
+  Future<void> fetchClassrooms() async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _classrooms = await _classroomService.fetchClassrooms();
+    } catch (e) {
+      debugPrint("Classroom fetch error: $e");
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
   }
 
